@@ -1,4 +1,4 @@
-package migration
+package main
 
 import (
 	"go-gin-tuts/initializers"

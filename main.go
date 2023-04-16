@@ -9,14 +9,16 @@ import (
 
 func init() {
 	initializers.LoadEnvVariables()
+	initializers.ConnectDB()
 }
 
 func main() {
+	// instantiate server
 	router := gin.Default()
-	v1 := router.Group("/api/v1")
-	{
-		v1.GET("/", controllers.PostsCreate)
-	}
 
+	// configure routes
+	router.GET("/", controllers.PostsCreate)
+
+	// run server
 	router.Run()
 }
