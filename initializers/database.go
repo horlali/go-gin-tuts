@@ -3,7 +3,7 @@ package initializers
 import (
 	"log"
 
-	"github.com/glebarez/sqlite"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
@@ -11,7 +11,7 @@ var DB *gorm.DB
 
 func ConnectDB() (*gorm.DB, error) {
 	var err error
-	DB, err := gorm.Open(sqlite.Open("gorm.sqlite3"), &gorm.Config{})
+	DB, err := gorm.Open(sqlite.Open("./gorm.db"), &gorm.Config{})
 
 	if DB != nil {
 		log.Println("database connected")

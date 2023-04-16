@@ -13,7 +13,10 @@ func init() {
 
 func main() {
 	router := gin.Default()
+	v1 := router.Group("/api/v1")
+	{
+		v1.GET("/", controllers.PostsCreate)
+	}
 
-	router.POST("/", controllers.PostsCreate)
-	router.Run() // listen and serve on 0.0.0.0:8080
+	router.Run()
 }

@@ -16,7 +16,5 @@ func PostsCreate(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, gin.H{
-		"message": "pong",
-	})
+	c.JSON(200, gin.H{"message": "pong"})
 }
