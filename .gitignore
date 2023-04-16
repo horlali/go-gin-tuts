@@ -1,2 +1,4 @@
 go-gin-tuts
+go-gin-tuts*
+db.sqlite3
 .env
