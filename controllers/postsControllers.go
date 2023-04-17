@@ -13,12 +13,10 @@ func PostsCreate(c *gin.Context) {
 		Body  string
 		Title string
 	}
-
 	c.Bind(body)
 
 	// Create a post
 	post := models.Post{Title: body.Title, Body: body.Body}
-
 	result := initializers.DB.Create(&post)
 
 	if result.Error != nil {
