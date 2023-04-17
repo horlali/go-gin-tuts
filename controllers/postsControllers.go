@@ -13,7 +13,13 @@ func PostsCreate(c *gin.Context) {
 		Body  string
 		Title string
 	}
-	c.Bind(body)
+
+	if err := c.BindJSON(&body); err != nil {
+		c.JSON(400, gin.H{
+			"status": "error",
+		})
+		return
+	}
 
 	// Create a post
 	post := models.Post{Title: body.Title, Body: body.Body}
