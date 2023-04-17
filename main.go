@@ -17,7 +17,8 @@ func main() {
 	router := gin.Default()
 
 	// configure routes
-	router.GET("/", controllers.PostsCreate)
+	router.GET("/posts", controllers.PostsIndex)
+	router.POST("/posts", controllers.PostsCreate)
 
 	// run server
 	router.Run()
