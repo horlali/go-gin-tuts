@@ -3,13 +3,14 @@ package main
 import (
 	"go-gin-tuts/controllers"
 	"go-gin-tuts/initializers"
+	"go-gin-tuts/migration"
 
 	"github.com/gin-gonic/gin"
 )
 
 func init() {
-	initializers.LoadEnvVariables()
-	initializers.ConnectDB()
+	initializers.CreateDB()   // create db
+	migration.MigrateTables() // migrate tables
 }
 
 func main() {
@@ -21,5 +22,5 @@ func main() {
 	router.POST("/posts", controllers.PostsCreate)
 
 	// run server
-	router.Run()
+	router.Run("localhost:8080")
 }

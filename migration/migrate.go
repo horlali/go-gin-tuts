@@ -1,15 +1,10 @@
-package main
+package migration
 
 import (
 	"go-gin-tuts/initializers"
 	"go-gin-tuts/models"
 )
 
-func init() {
-	initializers.LoadEnvVariables()
-	initializers.ConnectDB()
-}
-
-func main() {
+func MigrateTables() {
 	initializers.DB.AutoMigrate(&models.Post{})
 }

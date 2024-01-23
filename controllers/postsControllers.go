@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"go-gin-tuts/entity"
 	"go-gin-tuts/initializers"
 	"go-gin-tuts/models"
 
@@ -9,15 +10,11 @@ import (
 
 func PostsCreate(c *gin.Context) {
 	// Get data off req body
-	var body struct {
-		Body  string
-		Title string
-	}
+	var body entity.Post
 
+	// handle error
 	if err := c.BindJSON(&body); err != nil {
-		c.JSON(400, gin.H{
-			"status": "error",
-		})
+		c.JSON(400, gin.H{"error": err})
 		return
 	}
 
@@ -26,14 +23,12 @@ func PostsCreate(c *gin.Context) {
 	result := initializers.DB.Create(&post)
 
 	if result.Error != nil {
-		c.Status(400)
+		c.JSON(400, gin.H{"error": "Could not create post"})
 		return
 	}
 
 	// Return it
-	c.JSON(200, gin.H{
-		"post": post,
-	})
+	c.JSON(200, post)
 }
 
 func PostsIndex(c *gin.Context) {
